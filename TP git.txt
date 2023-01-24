@@ -1,0 +1,370 @@
+Bastien MONIER SIO1 SLAM
+
+
+-Créer, en ligne de commande, un répertoire tp-git
+
+>git init
+
+>git config --global user.name "bastienmnr"
+
+>mkdir tp-git
+
+
+-Se déplacer dans le répertoire
+
+
+>cd tp-git
+
+
+-Vérifier qu'on est dans le bon répertoire en affichant le chemin du répertoire courant
+
+>pwd
+
+-Initialiser un dépôt Git
+
+>git init
+
+-Lister tous les fichiers du répertoire (y compris les fichiers cachés) pour s'assurer que le répertoire .git à été créé
+
+>ls --all
+
+-Ouvrir ce répertoire sous vs-code
+
+>code .
+
+
+-Exécuter git status et copier/coller la sortie
+
+>basti@LAPTOP-A9QSA747 MINGW64 ~/tp-git (master)
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+
+-Créer le fichier fichier1.md avec un contenu quelconque et l'enregistrer
+-Créer le fichier fichier2.md avec un contenu quelconque et l'enregistrer
+
+>basti@LAPTOP-A9QSA747 MINGW64 ~/tp-git (master)
+$ touch fichier1.md
+
+basti@LAPTOP-A9QSA747 MINGW64 ~/tp-git (master)
+$ touch fichier2.md
+
+basti@LAPTOP-A9QSA747 MINGW64 ~/tp-git (master)
+$ echo "hello" >> fichier1.md
+
+basti@LAPTOP-A9QSA747 MINGW64 ~/tp-git (master)
+$ echo "goodbye" >> fichier2.md
+
+
+-éxécuter git status et copier/coller la sortie
+
+>$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        fichier1.md
+        fichier2.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+
+-Ajouter fichier1.md à l'index de Git (zone de Staging)
+
+>git add fichier1.md
+
+-Exécuter git status et copier/coller la sortie
+
+>$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   fichier1.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        fichier2.md
+
+
+-Créer un commit avec pour message : "Ajout de fichier1.md"
+
+>git commmit -m "Ajout de fichier1.md"
+
+
+-Exécuter git status et copier/coller la sortie
+
+>git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        fichier2.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+-Modifier fichier1.md et enregistrer
+
+>echo Hello Hello >> fichier1.md
+
+
+-Exécuter git status et copier/coller la sortie
+
+>$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   fichier1.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        fichier2.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+-Ajouter fichier1.md et fichier2.md à la zone de Staging
+
+>git add fichier2.md
+
+
+-Créer un commit "Ajout de fichier2.md et modification de fichier1.md"
+
+>git commit -m "Ajout de fichier2.md et modification de fichier1.md"
+
+
+-Copier/coller l'ID des deux premiers commits :
+
+    ID commit 1 :
+    ID commit 2 :
+
+>git log 
+
+>ID commit 1:b6967e06bb5bf6afe088dd39c89f066f6f0c196d
+ ID commit 2:bf6e534e88e9456bb11aa30bda4da6ef7df9c479 
+
+
+-Que signifie qu'un fichier est "tracked" ou "untracked" ?
+
+>Un fichier tracked est un fichier qui est suivi par git c'est à dire qu'il peut effectuer des commit et des modifications,
+pour celà il faut faire un "git add" , un fichier untracked est un fichier non suivi par git .
+
+
+-Pourquoi doit-on passer les fichiers par la zone de Staging (l'index) avant de les committer ?
+
+>Celà peut être utile si on travaille sur plusieurs fichiers en même temps afin de commit celui qu'on veut si on souhaite 
+continuer de travailler sur l'autre par exemple. De plus celà permet d'avoir une meilleur suivi avec git.
+
+
+
+-Créer une branche fonctionnalite1
+
+>git branch fonctionnalité1
+
+-Lister les branches
+
+>git branch 
+fonctionnalité1
+* master
+
+
+
+-Se déplacer sur la branche fonctionnalite1
+
+>git checkout fonctionnalité1
+
+
+-Lister les branches
+
+>git branch
+* fonctionnalité1
+  master
+
+
+-Que représente l'étoile à côté des noms des branches ?
+
+>l'étoile représente la branche sur laquelle on est présente au moment du listage.
+
+
+-Créer un nouveau fichier fichier3.md
+
+>touch fichier3.md
+
+
+-Modifier le fichier fichier2.md
+
+>echo "goodbye goodbye" >> fichier2.md
+
+
+-Comment utiliser VS Code pour qu'il nous montre les différences entre l'ancienne 
+version de fichier2.md et la version courante que l'on vient d'éditer ?
+
+>On regarde le contenu du fichier et il est indiqué les changements avec les modifications à coté du changement indiqué avec
+"fichierf.txt x of y change(s)".
+
+
+-Committer ces deux modifications : "Fonctionnalité 1 - première phase"
+
+>git add.
+>git commit -m "Fonctionnalité 1 - première phase"
+
+
+-Créer un nouveau fichier fichier4.md
+
+>touch fichier4.md
+
+
+-Modifier de nouveau le fichier fichier2.md
+
+>echo "goodbye goodbye goodbye" >> fichier2.md
+
+
+-Committer ces deux modifications : "Fonctionnalité 1 - terminée"
+
+>git add .
+>git commit -m "Fonctionnalité 1 - terminé"
+
+-Afficher la liste des fichiers du répertoire
+
+>ls
+fichier1.md  fichier2.md  fichier3.md/  fichier4.md/
+
+-Pourquoi les deux sorties sont-elles différentes ? Les fichiers ont-ils disparus ?
+
+>Les sorties sont différentes car les 2 premiers fichiers ont été crées sur la branche principale et le 2 derniers sur la
+branche fonctionnalité 1
+
+-Créer une nouvelle branche fonctionnalite2
+
+>git branch fonctionnalité2 
+
+
+-Cette branche ne va pas avoir toutes les données incluses dans fonctionnalite1. Pourquoi ?
+
+>Car elles sont 2 branches indépendantes
+
+
+-Qu'aurait-il fallu faire si on avait souhaité démarrer la branche 
+fonctionnalite2 en intégrant les modifications récentes de fonctionnalite1 ?
+
+>Il aurait fallu faire un git merge
+
+
+-Se déplacer sur la nouvelle branche fonctionnalite2
+ 
+>git checkout fonctionnalité 2
+
+
+-Créer un nouveau fichier fichier5.md
+
+>touch fichier5.md
+
+-Faire un commit intégrant cette ajout : "Ajout fichier5.md"
+
+>git add .
+>git commit . -m "Ajout fichier5.md"
+
+-Entrer la commande git log --oneline --decorate --graph --all pour visualiser, sur le terminal,le graphe des commits 
+ sur toutes les branches
+ 	
+	Noter la « déviation » entre les deux branches, à partir de la branche master
+
+-Installer l'extension VS Code Git Graph et visualiser le graphe actuel des commits à l'aide de cette extension
+
+    Sur cette représentation, que représente les points ?
+    Comment voit-on sur quelle branche on est actuellement ?
+
+
+>les points représentent les branches 
+>On voit sur quelle branche on est actuellement car elle est mise en gras et entouré en bleu sur mon vscode
+
+
+-On considère que la branche originale (master ou main) est la branche d'intégration, c'est-à-dire celle qui va 
+ contenir l'historique de toutes les modifications développées au fur et à mesure dans les branches annexes
+
+-On va maintenant fusionner la branche fonctionnalite1, qui est terminée, avec la branche d'intégration
+
+-Se déplacer sur la branche master
+
+    Noter le changement dans l'onglet Git Graph
+    >On ne voit pas les nouveaux fichiers créer sur la dernière branche
+
+-Fusionner avec la branche fonctionnalité1
+
+>git merge fonctionnalité1
+
+
+-Noter le changement dans l'onglet Git Graph. Que signifie la mention Fast-forward indiquée par la sortie de la commande ?
+
+>Celà indique que le bout de la branche principale est déplacé vers la branche selectionné.
+
+
+-On veut maintenant fusionner fonctionnalite2 dans la branche d'intégration (master)
+Effectuer cette fusion
+
+>git merge fonctionnalité 2 
+
+
+-Noter le changement dans l'onglet Git Graph. Que signifie la mention Merge made by the ... strategy indiquée 
+par la sortie de la commande ?
+Quelle est la différence fondamentale avec la fusion précédente ?
+
+>Cette mention signifie qu'une strategie est utilisé pour faire parvenir des modifications des différents fichiers afin que 
+celà soit cohérent.
+>.
+
+
+-Créer une nouvelle branche fonctionnalite3, se déplacer dessus, et modifier le fichier fichier1.md en y ajoutant 
+une ligne de texte. Committer : "Modification fichier1 pour fonctionnalité 3"
+
+>git branch -b fonctionnalité3
+
+
+-Committer : "Modification fichier1 pour fonctionnalité 3"
+
+    Comment utiliser Git Graph pour qu'il nous montre les différences entre l'ancienne version de fichier1.md et la version
+ courante que l'on vient de committer ?
+
+>git add .
+ git commit . -m "Modification fichier 1 pour fonctionnalité 3"
+
+	>
+
+
+-Repartir sur master, et modifier fichier1.md en y ajoutant aussi une ligne (différente de celle qu'on a ajoutée 
+sur l'autre branche)
+
+>git checkout master 
+>(modif)
+>git add.
+>git commit . -m "modif1 pour fonctionnalité3"
+
+
+-Tenter de fusionner la branche fonctionnalite3 avec master
+
+    Que se passe-t-il et pourquoi ?
+
+>git checkout fonctionnalité3
+>git merge master
+
+	Il y a une erreur car le même fichier à été modifié sur 2 branches différentes avant d'être merge donc il ya a un conflit
+entre les 2 modifications.
+
+
+
+
+
+
+
+
+
